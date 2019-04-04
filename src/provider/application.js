@@ -23,7 +23,7 @@ class Application extends EventEmitter {
     this.secret = secret;
     this.onReady = onReady;
     this.targetSelectors = targetSelectors;
-    this.resizeConfig = {};
+    this.resizeConfig = null;
     this.requestResize = this.requestResize.bind(this);
     this.handleConsumerMessage = this.handleConsumerMessage.bind(this);
     this.authorizeConsumer = this.authorizeConsumer.bind(this);
@@ -84,8 +84,10 @@ class Application extends EventEmitter {
    * @param {object} event - event which triggered the listener
    */
   imageRequestResize(event) {
+    console.log(event.target.hasAttribute);
     const tgt = event.target;
-    if (tgt.tagName === 'IMG' && !(tgt.hasAttribute('height') || tgt.hasAttribute('width'))) {
+    if (this.resizeConfig && tgt.tagName === 'IMG' && !(tgt.hasAttribute('height') || tgt.hasAttribute('width'))) {
+      console.log('resizing');
       this.requestResize();
     }
   }

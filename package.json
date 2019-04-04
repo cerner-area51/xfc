@@ -17,7 +17,7 @@
     "clean": "rm -rf dist lib doc",
     "dev": "webpack-dev-server --config webpack.config.dev.js",
     "lint-js": "eslint 'src/**/*.js' --fix",
-    "test": "mocha --compilers js:babel-core/register --recursive"
+    "test": "mocha --compilers js:babel-core/register --recursive -g 'does not call requestResize for an image with height'"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
